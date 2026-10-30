@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#d71935">
+<title>DONAR | Conectamos vidas</title>
+<style>
+:root {
+ --red:#d71935;
+ --dark:#a90c26;
+ --pink:#fff0f2;
+ --ink:#20232b;
+ --muted:#747985;
+ --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:var(--ink);background:white}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font:inherit}
+header{
+ position:sticky;top:0;z-index:20;background:#ffffffed;
+ backdrop-filter:blur(15px);padding:17px 7%;
+ display:flex;align-items:center;justify-content:space-between;
+ box-shadow:0 2px 20px #0000000b;
+}
+.logo{font-size:30px;font-weight:900;color:var(--red);letter-spacing:-2px}
+.logo span{color:var(--ink)}
+nav{display:flex;gap:23px}
+nav a{font-size:13px;font-weight:bold}
+nav a:hover{color:var(--red)}
+.btn{
+ display:inline-block;border:0;border-radius:30px;
+ padding:14px 24px;background:var(--red);color:white;
+ font-weight:bold;transition:.25s
+}
+.btn:hover{background:var(--dark);transform:translateY(-3px)}
+.btn-outline{background:white;color:var(--red);border:1px solid var(--red)}
+.hero{
+ min-height:600px;padding:90px 8%;display:flex;
+ align-items:center;justify-content:space-between;gap:35px;
+ background:radial-gradient(circle at 85% 40%,#ffdee3,transparent 30%),linear-gradient(120deg,#fff,#fff5f6);
+ overflow:hidden;
+}
+.hero-content{max-width:610px}
+.tag{display:inline-block;padding:10px 16px;border-radius:30px;background:var(--pink);color:var(--red);font-size:12px;font-weight:bold;margin-bottom:22px}
+h1{font-size:clamp(44px,6vw,76px);letter-spacing:-4px;line-height:1.04;margin-bottom:24px}
+h1 span,.red{color:var(--red)}
+.hero p{font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:28px}
+.hero-art{
+ width:340px;height:340px;min-width:260px;border-radius:50%;
+ background:linear-gradient(140deg,#ffe3e7,#ffcbd3);
+ display:grid;place-items:center;position:relative;
+}
+.blood{font-size:150px;animation:float 3s infinite;filter:drop-shadow(0 15px 15px #a90f2733)}
+.bubble{position:absolute;color:var(--red);font-size:35px;animation:float 4s infinite}
+.b1{top:5%;right:12%}.b2{bottom:12%;left:3%}.b3{top:45%;left:-10%}
+@keyframes float{50%{transform:translateY(-15px)}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 8%;margin-top:-25px;position:relative}
+.stat{background:white;padding:25px;border-radius:16px;text-align:center;box-shadow:0 10px 35px #0000000b}
+.stat strong{display:block;color:var(--red);font-size:27px;margin-bottom:8px}
+.stat p{font-size:13px;color:var(--muted)}
+section{padding:85px 8%}
+.heading{text-align:center;margin-bottom:40px}
+.heading h2{font-size:36px;margin-bottom:12px}
+.heading p{color:var(--muted);line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{padding:30px;border:1px solid #f0e6e8;border-radius:18px;background:white;transition:.3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 15px 35px #d7193512}
+.icon{font-size:39px;margin-bottom:18px}
+.card h3{margin-bottom:12px}
+.card p{font-size:14px;line-height:1.8;color:var(--muted)}
+.soft{background:#fff5f6}
+.search-box{max-width:760px;margin:auto;display:flex;gap:12px;flex-wrap:wrap}
+input,select,textarea{
+ width:100%;padding:15px;border:1px solid #e4e4e4;
+ border-radius:10px;background:white;font:inherit;
+}
+.search-box input{flex:2;min-width:200px}
+.search-box select{flex:1;min-width:180px}
+.result{max-width:760px;margin:20px auto 0;padding:20px;border-radius:14px;background:white;border:1px solid #eee;line-height:1.7;color:var(--muted)}
+.event-empty{text-align:center;padding:35px;background:white;border-radius:18px;border:1px dashed #e7b9c0;color:var(--muted);line-height:1.8}
+.formbox{max-width:650px;margin:auto;padding:35px;border-radius:20px;box-shadow:0 12px 45px #0000000d;border:1px solid #eee}
+.formbox h3{font-size:24px;margin-bottom:10px}
+.formbox>p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:22px}
+.formbox label{display:block;font-size:13px;font-weight:bold;margin:14px 0 8px}
+.formbox button{width:100%;margin-top:15px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.6;margin-top:15px}
+.check input{width:auto;margin-top:3px}
+.faq{max-width:800px;margin:auto}
+details{padding:20px;border-bottom:1px solid #eee}
+summary{cursor:pointer;font-weight:bold}
+details p{padding-top:14px;color:var(--muted);font-size:14px;line-height:1.7}
+footer{background:#211c20;color:white;text-align:center;padding:50px 8%}
+footer p{color:#c4bdc0;font-size:13px;line-height:1.8;margin-top:12px}
+footer .logo{margin-bottom:15px}
+.legal{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:12px;color:#fff}
+.legal a:hover{color:#ff9baa}
+.cookie{
+ position:fixed;bottom:20px;left:20px;width:min(420px,calc(100% - 40px));
+ background:white;padding:23px;border-radius:17px;z-index:50;
+ box-shadow:0 10px 50px #0003;display:none
+}
+.cookie h3{color:var(--red);margin-bottom:10px}
+.cookie p{font-size:13px;color:var(--muted);line-height:1.7}
+.cookie-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.cookie-actions button{padding:11px 15px;border:0;border-radius:25px;font-size:12px}
+.accept{background:var(--red);color:white}
+.reject,.settings{background:#eee;color:#333}
+.modal{
+ display:none;position:fixed;inset:0;background:#0008;z-index:80;
+ align-items:center;justify-content:center;padding:20px
+}
+.modal-content{background:white;padding:30px;border-radius:20px;max-width:550px;width:100%;max-height:85vh;overflow:auto}
+.modal-content h2{margin-bottom:15px;color:var(--red)}
+.modal-content p{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:15px}
+.close{float:right;background:#eee;border:0;padding:8px 12px;border-radius:8px}
+@media(max-width:850px){
+ nav{display:none}
+ .hero{flex-direction:column;text-align:center}
+ .hero-art{width:270px;height:270px}
+ .blood{font-size:120px}
+ .grid{grid-template-columns:1fr}
+ .stats{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <a class="logo" href="#inicio">DON<span>AR.</span></a>
+ <nav>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#requisitos">Donar sangre</a>
+  <a href="#centros">Centros</a>
+  <a href="#jornadas">Jornadas</a>
+  <a href="#contacto">Contacto</a>
+ </nav>
+ <a href="#registro" class="btn">Ser voluntario</a>
+</header>
+
+<main>
+<div class="hero" id="inicio">
+ <div class="hero-content">
+  <div class="tag">❤️ UNA COMUNIDAD QUE SALVA VIDAS</div>
+  <h1>Tu sangre puede ser <span>su esperanza.</span></h1>
+  <p>En DONAR conectamos personas solidarias con información y oportunidades de donación de sangre en Colombia. Cada gesto cuenta. Cada donante importa.</p>
+  <a href="#registro" class="btn">Quiero ser donante →</a>
+  <a href="#centros" class="btn btn-outline">Encontrar un centro</a>
+ </div>
+ <div class="hero-art">
+  <div class="blood">🩸</div>
+  <div class="bubble b1">💧</div>
+  <div class="bubble b2">❤️</div>
+  <div class="bubble b3">💧</div>
+ </div>
+</div>
+
+<div class="stats">
+ <div class="stat"><strong>❤️</strong><p>Solidaridad voluntaria</p></div>
+ <div class="stat"><strong>🏥</strong><p>Centros autorizados</p></div>
+ <div class="stat"><strong>🇨🇴</strong><p>Alcance nacional</p></div>
+</div>
+
+<section id="nosotros">
+ <div class="heading">
+  <h2>Conoce <span class="red">DONAR</span></h2>
+  <p>Una plataforma para promover la cultura de donación voluntaria.</p>
+ </div>
+ <div class="grid">
+  <article class="card"><div class="icon">🩸</div><h3>Donación responsable</h3><p>Promovemos información clara para que conozcas el proceso de donación y sus condiciones.</p></article>
+  <article class="card"><div class="icon">🏥</div><h3>Conexión segura</h3><p>Queremos facilitar el acceso a información de bancos de sangre y servicios autorizados.</p></article>
+  <article class="card"><div class="icon">🤝</div><h3>Comunidad solidaria</h3><p>Unimos esfuerzos para impulsar la participación voluntaria y altruista.</p></article>
+ </div>
+</section>
+
+<section class="soft" id="requisitos">
+ <div class="heading">
+  <h2>¿Quién puede <span class="red">donar?</span></h2>
+  <p>La aptitud para donar siempre debe ser evaluada por personal de salud.</p>
+ </div>
+ <div class="grid">
+  <article class="card"><div class="icon">👤</div><h3>Edad y condiciones</h3><p>La edad y demás condiciones deben cumplir los criterios vigentes para la donación en Colombia.</p></article>
+  <article class="card"><div class="icon">💪</div><h3>Estado de salud</h3><p>El personal sanitario evaluará tu estado de salud, antecedentes y condiciones para donar.</p></article>
+  <article class="card"><div class="icon">🩺</div><h3>Entrevista previa</h3><p>Antes de donar se realiza una valoración confidencial para determinar tu elegibilidad.</p></article>
+ </div>
+ <p style="text-align:center;margin-top:25px;color:#777;font-size:12px">La información de esta sección es orientativa y no sustituye la valoración médica.</p>
+</section>
+
+<section id="centros">
+ <div class="heading">
+  <h2>Encuentra un <span class="red">centro de donación</span></h2>
+  <p>Consulta los servicios de donación de sangre autorizados.</p>
+ </div>
+ <div class="search-box">
+  <input id="city" placeholder="Escribe tu ciudad...">
+  <select id="department">
+   <option value="">Todos los departamentos</option>
+   <option>Atlántico</option><option>Antioquia</option>
+   <option>Bogotá D.C.</option><option>Bolívar</option>
+   <option>Magdalena</option><option>Valle del Cauca</option>
+   <option>Santander</option><option>Cundinamarca</option>
+  </select>
+  <button class="btn" onclick="searchCenters()">Buscar</button>
+ </div>
+ <div class="result" id="centerResults">
+  <strong>Directorio nacional</strong><br>
+  El directorio oficial debe ser incorporado y verificado antes de publicar nombres, direcciones o teléfonos de centros.
+  <br><br>
+  <a class="red" href="https://www.ins.gov.co/" target="_blank" rel="noopener">Consultar el Instituto Nacional de Salud →</a>
+ </div>
+</section>
+
+<section class="soft" id="jornadas">
+ <div class="heading">
+  <h2>Jornadas de <span class="red">donación</span></h2>
+  <p>Infórmate sobre campañas y actividades verificadas.</p>
+ </div>
+ <div class="event-empty">
+  <div style="font-size:42px">📅</div>
+  <h3>Próximamente nuevas jornadas</h3>
+  <p>Las campañas se publicarán aquí una vez verificadas con las instituciones organizadoras.</p>
+ </div>
+</section>
+
+<section id="registro">
+ <div class="heading">
+  <h2>Únete a nuestra <span class="red">comunidad</span></h2>
+  <p>Déjanos tus datos de contacto si deseas recibir información.</p>
+ </div>
+ <div class="formbox">
+  <h3>Registro de voluntarios ❤️</h3>
+  <p>Este formulario recoge únicamente una solicitud de contacto. No determina si eres apto para donar y no constituye una reserva de donación.</p>
+  <form id="volunteerForm">
+   <label>Nombre completo</label>
+   <input type="text" id="name" required maxlength="100" autocomplete="name">
+   <label>Correo electrónico</label>
+   <input type="email" id="email" required autocomplete="email">
+   <label>Ciudad</label>
+   <input type="text" id="location" required maxlength="100">
+   <label>Teléfono (opcional)</label>
+   <input type="tel" id="phone" maxlength="20">
+   <div class="check">
+    <input type="checkbox" required>
+    <span>He leído la política de privacidad y autorizo el tratamiento de mis datos personales para gestionar esta solicitud de contacto.</span>
+   </div>
+   <button class="btn" type="submit">Enviar solicitud →</button>
+   <p id="formMessage" style="margin-top:15px"></p>
+  </form>
+ </div>
+</section>
+
+<section>
+ <div class="heading">
+  <h2>Preguntas <span class="red">frecuentes</span></h2>
+  <p>Resolvemos algunas de tus dudas.</p>
+ </div>
+ <div class="faq">
+  <details><summary>¿Dónde puedo donar sangre?</summary><p>En bancos de sangre autorizados. Consulta el directorio oficial del Instituto Nacional de Salud.</p></details>
+  <details><summary>¿Puedo donar si tomo medicamentos?</summary><p>Depende del medicamento y de tu situación. Consulta con el personal del banco de sangre antes de donar.</p></details>
+  <details><summary>¿La donación es segura?</summary><p>La donación debe realizarse en instalaciones habilitadas, con personal capacitado y material estéril de un solo uso.</p></details>
+  <details><summary>¿DONAR recibe o almacena sangre?</summary><p>No. DONAR es una plataforma informativa de conexión. La recolección y manejo de sangre corresponden a servicios de sangre habilitados.</p></details>
+ </div>
+</section>
+</main>
+
+<footer id="contacto">
+ <div class="logo">DONAR.</div>
+ <p>Una gota puede representar una nueva oportunidad de vida.</p>
+ <p>Plataforma informativa de promoción de la donación voluntaria de sangre.</p>
+ <div class="legal">
+  <a href="#" onclick="openModal('privacy');return false">Política de privacidad</a>
+  <a href="#" onclick="openModal('terms');return false">Términos y condiciones</a>
+  <a href="#" onclick="openModal('cookies');return false">Política de cookies</a>
+ </div>
+ <p style="margin-top:30px">© 2026 DONAR. Todos los derechos reservados.</p>
+ <p style="font-size:11px">DONAR no es un banco de sangre ni presta servicios médicos. Los servicios de donación son responsabilidad exclusiva de las instituciones autorizadas.</p>
+</footer>
+
+<div class="cookie" id="cookieBox">
+ <h3>🍪 Tu privacidad importa</h3>
+ <p>Utilizamos almacenamiento necesario para recordar tus preferencias. Las cookies opcionales solo se activarán con tu consentimiento.</p>
+ <div class="cookie-actions">
+  <button class="accept" onclick="saveCookies('all')">Aceptar todas</button>
+  <button class="reject" onclick="saveCookies('necessary')">Solo necesarias</button>
+  <button class="settings" onclick="openModal('cookies')">Configurar</button>
+ </div>
+</div>
+
+<div class="modal" id="legalModal">
+ <div class="modal-content">
+  <button class="close" onclick="closeModal()">✕</button>
+  <div id="modalText"></div>
+ </div>
+</div>
+
+<script>
+const cookieKey = "donar_cookie_preferences";
+const cookieBox = document.getElementById("cookieBox");
+
+if(!localStorage.getItem(cookieKey)){
+ cookieBox.style.display="block";
+}
+
+function saveCookies(choice){
+ localStorage.setItem(cookieKey,choice);
+ cookieBox.style.display="none";
+}
+
+function openModal(type){
+ const contents={
+ privacy:`
+ <h2>Política de privacidad</h2>
+ <p>DONAR deberá identificar al responsable del tratamiento de datos personales, sus datos de contacto y las finalidades específicas de cada tratamiento.</p>
+ <p>El titular podrá conocer, actualizar, rectificar y solicitar la supresión de sus datos, así como revocar su autorización en los términos de la Ley 1581 de 2012.</p>
+ <p>Antes de activar registros reales, debe incorporarse la identidad legal del responsable, los canales de atención, los procedimientos de consultas y reclamos y la política completa aprobada.</p>`,
+ terms:`
+ <h2>Términos y condiciones</h2>
+ <p>DONAR es una propuesta de plataforma informativa para promover la donación voluntaria de sangre.</p>
+ <p>No recolecta, almacena, procesa ni transfunde sangre. Tampoco determina la aptitud médica de los usuarios.</p>
+ <p>La donación debe coordinarse directamente con instituciones autorizadas. La información de campañas y centros deberá verificarse antes de su publicación.</p>`,
+ cookies:`
+ <h2>Preferencias de cookies</h2>
+ <p>El almacenamiento necesario permite recordar tus decisiones de privacidad.</p>
+ <p>Las tecnologías opcionales de analítica o publicidad no deben activarse sin el consentimiento correspondiente.</p>
+ <button class="btn" onclick="saveCookies('necessary');closeModal()">Solo necesarias</button>
+ <button class="btn" onclick="saveCookies('all');closeModal()">Aceptar todas</button>`
+ };
+ document.getElementById("modalText").innerHTML=contents[type];
+ document.getElementById("legalModal").style.display="flex";
+}
+function closeModal(){
+ document.getElementById("legalModal").style.display="none";
+}
+
+function searchCenters(){
+ const city=document.getElementById("city").value.trim();
+ const dep=document.getElementById("department").value;
+ const query=[city,dep].filter(Boolean).join(", ");
+ const box=document.getElementById("centerResults");
+ box.innerHTML=`
+ <strong>Consulta de centros: ${escapeHTML(query || "Colombia")}</strong>
+ <p>El directorio de centros aún requiere cargar y validar los establecimientos autorizados para esta ubicación.</p>
+ <a class="red" href="https://www.ins.gov.co/" target="_blank" rel="noopener">Consultar fuente institucional →</a>`;
+}
+function escapeHTML(str){
+ return str.replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ })[c]);
+}
+
+document.getElementById("volunteerForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ document.getElementById("formMessage").textContent=
+ "La demostración funciona correctamente, pero el registro aún no está conectado a un servidor. Tus datos no han sido enviados.";
+ this.reset();
+});
+</script>
+</body>
+</html>
